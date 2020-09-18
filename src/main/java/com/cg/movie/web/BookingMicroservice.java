@@ -1,11 +1,15 @@
 package com.cg.movie.web;
 
+
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,30 +48,18 @@ public class BookingMicroservice {
 	//-------------Cancel Booking-------------//
 	
 	@DeleteMapping(MovieConstants.CANCEL_BOOKING_URL)
-	public String cancelBooking(@PathVariable ("bookingid") String bookingId) throws BookingException{
+	public BookingMessage cancelBooking(@PathVariable ("bookingid") String bookingId) throws BookingException{
 		bookingService.cancelBooking(bookingId);
-		return MovieConstants.TICKET_CANCELLED;
+		return new BookingMessage(MovieConstants.TICKET_CANCELLED);
 	}	
 	
 	
 		
-/*	//-------------Get all Booking-------------//
+    //-------------Get all Booking-------------//
 	
-	@GetMapping("allbooking")
-	public List<Booking> allBooking() throws BookingException{
-		List<Booking> blist = bookingService.getBooking();
+	@GetMapping(MovieConstants.GET_BOOKING_URL)
+	public List<Booking> getBooking(@PathVariable("phone") String contact) throws BookingException{
+		List<Booking> blist = bookingService.getBooking(contact);
 		return blist;
-	}*/
-	
-	
-	//-------------Find Booking by show-------------//
-	
-	/*@GetMapping("findbyshow/{sname}")
-	public List<Booking> findByShow(@PathVariable("sname") String show) throws BookingException{
-		List<Booking> blist = bookingService.findByShow(show);
-		return blist;
-	}*/
-
-	
-	
+	}
 }

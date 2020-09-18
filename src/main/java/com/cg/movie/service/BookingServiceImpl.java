@@ -1,6 +1,7 @@
 package com.cg.movie.service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,23 +71,14 @@ public class BookingServiceImpl implements IBookingService {
 		return MovieConstants.TICKET_CANCELLED;
 	}
 	
-
-	/*@Override
-	public List<Booking> getBooking() throws BookingException {
-		List<Booking> blist = bookingDao.findAll();
+	@Override
+	public List<Booking> getBooking(String contact) throws BookingException {
+		List<Booking> blist = bookingDao.findByContact(contact);
 		if(blist.isEmpty())
-			throw new BookingException("Booking not found");
-		blist.sort((b1, b2) -> (b1.getUserName()).compareTo(b2.getUserName()));
+			throw new BookingException(MovieConstants.BOOKING_NOT_FOUND_FOR_CONTACT);
+		blist.sort((b1, b2) -> (b2.getBookingDate()).compareTo(b1.getBookingDate()));
 		
 		return blist;
-	}*/
-
-	/*	@Override
-	public List<Booking> findByShow(String show) throws BookingException {
-		List<Booking> bookingList = bookingDao.findByShow(show);
-	if (bookingList.isEmpty())
-		throw new BookingException("Booking not found");
-	return bookingList;
-	}*/
-
+	}
+	
 }

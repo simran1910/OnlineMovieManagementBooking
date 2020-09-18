@@ -6,6 +6,8 @@ public class ErrorMessage {
 	public String message;
 	public String code;
 	public List<String> messages;
+	
+	
 	public List<String> getMessages() {
 		return messages;
 	}

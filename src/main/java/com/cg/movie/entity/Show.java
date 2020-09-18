@@ -29,6 +29,8 @@ public class Show {
 	private LocalDate showDate;
 	@Column(name="screen_name", length=25)
 	private String screenName;
+	@Column(name="location", length=25)
+	private String location;
 	
 	@Transient
 	private String screenImg;
@@ -77,6 +79,14 @@ public class Show {
 		this.screenName = screenName;
 	}
 
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
 	public Movie getMovie() {
 		return movie;
 	}
@@ -95,7 +105,4 @@ public class Show {
 	}
 	
 	
-	
-	
-
 }

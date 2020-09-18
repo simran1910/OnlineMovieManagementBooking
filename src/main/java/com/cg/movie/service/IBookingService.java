@@ -1,5 +1,7 @@
 package com.cg.movie.service;
 
+import java.util.List;
+
 import com.cg.dto.BookingDto;
 import com.cg.movie.entity.Booking;
 import com.cg.movie.exceptions.BookingException;
@@ -9,7 +11,5 @@ public interface IBookingService {
 	
 	public Booking addBooking (BookingDto bookingDto) throws BookingException, ShowException;
 	public String cancelBooking(String bookingId) throws BookingException;
-	//List<Booking> getBooking() throws BookingException;
-	//public List<Booking> findByShow(String show) throws BookingException;
-
+	public List<Booking> getBooking(String contact) throws BookingException;
 }
